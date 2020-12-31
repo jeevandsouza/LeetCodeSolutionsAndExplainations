@@ -1,0 +1,6 @@
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        return (bin((int(a,2)+ int (b,2)))[2:])
+        #convert string to int with base 2 add them and as in python binary starts with 0b 
+        #use slice operation to remove it.(Tried it with c# bit complicated as we need to use BigInteger to convert or else go with a for loop and manual method of calculation
+		
