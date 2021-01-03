@@ -1,0 +1,39 @@
+public class Solution {
+    public bool HalvesAreAlike(string s) {
+        string firstHalf="",secondHalf="";
+        int firstHalfCounter,secondHalfCounter;
+        string lowerCaseString = s.ToLower();
+        firstHalf = lowerCaseString.Substring(0, ((lowerCaseString.Length) / 2));
+        secondHalf = lowerCaseString.Substring(((lowerCaseString.Length)/2),((lowerCaseString.Length) / 2));
+        firstHalfCounter = GetVowelCount(firstHalf);
+        secondHalfCounter = GetVowelCount(secondHalf);
+            return firstHalfCounter == secondHalfCounter;
+       
+    }
+    public int GetVowelCount(string ToCountVowel)
+    {
+        int vowelCounter=0;
+        foreach (char letter in ToCountVowel)
+        {
+            switch(letter)
+            {
+                case 'a':
+                vowelCounter++;
+                break;
+                case 'e':
+                vowelCounter++;
+                break;
+                case 'i':
+                vowelCounter++;
+                break;
+                case 'o':
+                vowelCounter++;
+                break;
+                case 'u':
+                vowelCounter++;
+                break;
+            }
+        }
+        return vowelCounter;
+    }
+}//This is a detailed bruteforce solution but is O(n) and better than 98 percent solutions, easier method can be done using dictionary or hashsets and also using a single loop and not calling external function
