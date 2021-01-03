@@ -1,0 +1,14 @@
+public class Solution {
+    public int NumIdenticalPairs(int[] nums) {
+        int counter=0;
+        for (int loopVar=0;loopVar < nums.Length-1;loopVar++)
+        {
+            for(int innerLoop=loopVar;innerLoop < nums.Length; innerLoop++ )
+            {
+                if(nums[loopVar] == nums[innerLoop] && loopVar < innerLoop)
+                    counter++;
+            }
+        }
+        return counter;
+    }
+}//Can be done using map in O(n) or something similar 
