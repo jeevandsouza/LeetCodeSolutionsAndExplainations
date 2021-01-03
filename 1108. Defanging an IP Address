@@ -1,0 +1,14 @@
+public class Solution {
+    public string DefangIPaddr(string address) {
+        StringBuilder defang = new StringBuilder();
+        foreach(char subnet in address)
+        {
+            if(subnet != '.')
+               defang.Append(subnet);
+            else
+               defang.Append("[.]");
+        }
+        return defang.ToString();
+        //We can also use address.Replace function it is a one liner.
+    }
+}
