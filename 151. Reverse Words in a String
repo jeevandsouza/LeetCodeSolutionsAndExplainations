@@ -1,0 +1,40 @@
+151. Reverse Words in a String
+
+
+Given an input string s, reverse the order of the words.
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        input = []
+        input = s.split()
+        input.reverse()
+        result = " ".join(input)
+        return result
+		
+		
+
+/*Things learnt
+**we can use list as a = []
+** split function to split a string based on whitespace,'-',',' etc
+** reverse function reverses the list
+** use join function to join the list to obtain as a string and if you need whitespace b/w words use " ".join and not "".join
+** in c++ we can use substr and loop to add it to a	string
+*/
+        
+ class Solution {
+public:
+    void reverseWords(string &s) {
+        string result;
+        int pos = 0;
+        for (int i = 0; i < s.size(); i ++){
+            if (s[i] == ' '){
+                if (i > pos )
+                    result = s.substr(pos,i-pos)+ " " + result ;
+                pos = i + 1;
+            }
+            else if (i == s.size()-1)
+                result = s.substr(pos,s.size()-pos)+" "+result;
+        }
+        s = result.substr(0,result.size()-1) ;
+    }
+};       
