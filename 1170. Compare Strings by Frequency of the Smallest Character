@@ -1,0 +1,38 @@
+1170. Compare Strings by Frequency of the Smallest Character
+
+Let the function f(s) be the frequency of the lexicographically smallest character in a non-empty string s. For example, if s = "dcce" then f(s) = 2 because the lexicographically smallest character is 'c', which has a frequency of 2.
+
+You are given an array of strings words and another array of query strings queries. For each query queries[i], count the number of words in words such that f(queries[i]) < f(W) for each W in words.
+
+Return an integer array answer, where each answer[i] is the answer to the ith query.
+
+class Solution:
+    def numSmallerByFrequency(self, queries: List[str], words: List[str]) -> List[int]:
+        intQueries = []
+        intWords = []
+        result = []
+        for word in queries:
+            toSort = ''.join(sorted(word))
+            count = toSort.count(toSort[0])
+            intQueries.append(count)
+        for word in words:
+            toAdd = ''.join(sorted(word))
+            count = toAdd.count(toAdd[0])
+            intWords.append(count)
+        intWords.sort(reverse = True)
+        for number in intQueries:
+            counter = 0
+            for allnum in intWords:
+                if(allnum > number):
+                    counter = counter + 1
+                else:
+                    break
+            result.append(counter)
+        return result
+       
+	   
+/* Things learned
+** count() function to count the list , we can pass character to count it's occurences, using append
+** to sort a list in reverse order
+
+*/
