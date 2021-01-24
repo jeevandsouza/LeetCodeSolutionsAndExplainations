@@ -1,0 +1,40 @@
+415. Add Strings (Easy)
+
+Given two non-negative integers num1 and num2 represented as string, return the sum of num1 and num2.
+
+class Solution:
+    def addStrings(self, num1: str, num2: str) -> str:
+        return str((int(num1) + int(num2)))
+		
+/* things learnd
+** str() function to convert int to str and int() to convert str to int
+** len() function to check length of input string
+Without built-in functions in cpp
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        string result;
+        int a,b,sum,carry=0;
+        int i = num1.size() - 1;
+        int j = num2.size() - 1;
+        while(i>=0 || j>=0){
+            a = (i>=0) ? num1[i]-'0' : 0; 
+            b = (j>=0) ? num2[j]-'0' : 0; 
+            sum = a+b+carry;
+            carry = sum/10;
+            sum = sum%10;
+            result.push_back('0' + sum);
+            i--;
+            j--;
+        }
+        
+        if(carry)
+            result.push_back('0' + carry);
+        reverse(result.begin(),result.end());
+        return result;
+    }
+};
+
+
+
+*/
