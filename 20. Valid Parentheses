@@ -1,0 +1,68 @@
+20. Valid Parentheses
+
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+
+
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char>input;
+        
+         for(int i=0; i<s.length();i++)
+         {
+             switch(s[i])
+             {
+                 case '[':
+                     input.push(s[i]);
+                     break;
+                 case '{':
+                     input.push(s[i]);
+                     break;
+                case '(':
+                     input.push(s[i]);
+                     break;
+                case ']':
+                     if(input.empty())
+                         return false;
+                     if(input.top() != '[')
+                         return false;
+                     else
+                         input.pop();
+                     break;
+                case '}':
+                     if(input.empty())
+                         return false;
+                     if(input.top() != '{')
+                         return false;
+                      else
+                         input.pop();
+                     break;
+                case ')':
+                     if(input.empty())
+                         return false;
+                      if(input.top() != '(')
+                         return false;
+                      else
+                         input.pop();
+                     break;
+                         
+             }
+         }
+        if(!input.empty())
+            return false;
+        return true;
+    }
+};
+
+
+/*Things learned
+
+** can't use string in switch case
+** how to use stack in stl, push,pop,empty and top, if the stack is empty don't top or pop it will throw segmentation fault
+** Another method to solve this would be push to the stack ]}) when u see [{( respectively and pop when u see [{(. 
+*/
