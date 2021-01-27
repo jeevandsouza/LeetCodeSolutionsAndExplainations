@@ -1,0 +1,95 @@
+56. Merge Intervals
+
+Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an 
+array of the non-overlapping intervals that cover all the intervals in the input.
+
+Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+
+//Final solution after understanding the concepts
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>>result;
+        sort(intervals.begin(),intervals.end());
+        result.push_back(intervals[0]);
+        for(int i = 1;i < intervals.size(); i++)
+        {
+            if(result.back()[1] >= intervals[i][0])
+                result.back()[1] = max(intervals[i][1],result.back()[1]);
+            else
+                result.push_back(intervals[i]);
+        }
+        return result;
+    }
+};
+
+//Initial solution
+
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>>result;
+        vector< vector<int> >::iterator row,simple;
+        vector<int>::iterator first,second,nextFirst,nextSecond;
+        int counter = 0;
+        for (row = intervals.begin(); row != intervals.end(); row++) {
+             first  = row->begin(); second = first + 1 ;
+              while(true)
+              {
+                  row++;
+                  simple = row;
+               //  if(simple != intervals.end())
+              //    {
+                 nextFirst = row->begin(); 
+                 vector<int>intermediate;
+                 nextSecond = first + 1 ;
+                  if(*second >= *nextFirst && *second <= *nextSecond)
+                  {
+                      intermediate.push_back(*first);
+                      intermediate.push_back(*nextSecond);
+                      result.push_back(intermediate);
+                      intermediate.pop_back();
+                      intermediate.pop_back();
+                      counter++;
+                  }
+                  else if(*second >= *nextFirst && *second >= *nextSecond)
+                  {
+                       intermediate.push_back(*first);
+                      intermediate.push_back(*second);
+                      result.push_back(intermediate);
+                      intermediate.pop_back();
+                      intermediate.pop_back();
+                      counter++;
+                  }
+                  else
+                  {
+                      row--;
+                      break;
+                  }
+                  /*   }
+               else
+                  {
+                       row--;
+                      break;
+                  }*/
+              }
+        }
+        return result;
+    }
+};
+
+
+
+
+/* Lot of news things to learn and understanding
+** using 2D vectors in STL vector <vector<int>>vec, i/p can we given as flower brackets {{1,2},{3,4}}
+** how to declare and use iterators vector< vector<int> >::iterator row,simple;
+** * row will give the value and row will give the address, it can be leveraged in for loops
+** when using 2D vectors if row points to {1,2} then to get 1 or 2 that is value inside value we can use it1 = row->first and it2 = row->second
+** to push back we can either push it both together or use an intermediate vector push {5,6} and then push it to the result vector.
+** vec.back() gives the last element in the vector and vec.front() gives the first element.
+** In 2D vectors vec.back()[0], gives the last elements first entry i,e 3 and vec.back()[1] gives last elements second entry i,e 4.
+** we can use max function to get the maximum value.
+*/
