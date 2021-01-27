@@ -1,0 +1,50 @@
+1030. Matrix Cells in Distance Order
+
+We are given a matrix with R rows and C columns has cells with integer coordinates (r, c), where 0 <= r < R and 0 <= c < C.
+
+Additionally, we are given a cell in that matrix with coordinates (r0, c0).
+
+Return the coordinates of all cells in the matrix, sorted by their distance from (r0, c0) from smallest distance to 
+largest distance.  Here, the distance between two cells (r1, c1) and (r2, c2) is the Manhattan distance, |r1 - r2| + |c1 - c2|.  
+(You may return the answer in any order that satisfies this condition.)
+
+Input: R = 1, C = 2, r0 = 0, c0 = 0
+Output: [[0,0],[0,1]]
+Explanation: The distances from (r0, c0) to other cells are: [0,1]
+
+class Solution {
+public:
+    vector<vector<int>> allCellsDistOrder(int R, int C, int r0, int c0) {
+        vector<vector<int>> result;
+        vector<int> intermediate;
+        for(int i=0;i<R;i++)
+        {
+            for(int j=0;j<C;j++)
+            {
+                result.push_back({i,j});
+            }
+        }
+         auto CustSort = [r0, c0](vector<int> &a, vector<int> &b)
+        {
+            return abs(a[0]-r0) + abs(a[1]-c0) < abs(b[0]-r0) + abs(b[1]-c0);
+        };
+        
+        sort(result.begin(),result.end(),CustSort);
+        return result;
+    }
+};
+
+
+/*Things Learned are lambda function 
+** Lambda functions are used to write custom functions in case of sort,transform etc starting from c++ 11
+** []() { } barebone version of lamda function here [] is a capture list i,e arguements required outside of lambda function
+and in this case r0 and c0.() is the arguement list &a and &b here.
+** This is O(n^2) solution for O(n) use BFS.
+Example-->// below snippet find first number greater than 4 
+    // find_if searches for an element for which 
+    // function(third argument) returns true 
+    vector<int>:: iterator p = find_if(v.begin(), v.end(), [](int i) 
+    { 
+        return i > 4; 
+    });
+*/
