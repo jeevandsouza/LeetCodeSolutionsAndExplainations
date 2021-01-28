@@ -1,0 +1,29 @@
+168. Excel Sheet Column Title
+
+Given a positive integer, return its corresponding column title as appear in an Excel sheet.	
+
+  1 -> A
+    2 -> B
+    3 -> C
+	
+	Input: 701
+Output: "ZY"
+
+class Solution {
+public:
+    string convertToTitle(int n) {
+        string result="";
+        while(n)
+        {
+            result +=(--n) % 26 + 'A';
+            n /=26;
+        }
+        reverse(result.begin(),result.end());
+        return result;
+    }
+};
+
+/* Let's consider a tough example 701 whose answer is ZY
+We know A-Z is 26 letters and we have to break them accordingly, so take number
+decrease the number by 1 take mod and add A example 701-1 = 700 % 26 = 24 + 'A' = 'Y', 700/26=26 and repeat you get 'z', then reverse it to get the result. The first loop works with O(n/26).
+*/
