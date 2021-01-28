@@ -1,0 +1,37 @@
+172. Factorial Trailing Zeroes
+
+class Solution {
+public:
+    
+    
+    int trailingZeroes(int n) {
+        int count = 0;
+        if(n <5)
+            return 0;
+        else
+        {
+            while(n  >= 5)
+            {
+                n /=5;
+                count +=n;
+            }
+        }
+        return count;
+    }
+};
+
+
+/* Things learnt
+
+    long long GetFactorial(long long num)
+    {
+        if(num == 0)
+            return 1;
+        return (num * GetFactorial(num-1));
+    }
+	 recursive way of solving for facotrial.
+	 
+	 New lesson learnt was trailing zeros of a factorial can wefound out by diving them by 5, only 1,2,3,4 don't have trailing zeros 
+	 for their factorials from 5 i,e 120 they have atleast one . example 10 is 3628800 has two zeros so 10/5 = 2 and thus it has two zeros.
+	
+	*/
