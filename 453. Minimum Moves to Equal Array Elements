@@ -1,0 +1,31 @@
+453. Minimum Moves to Equal Array Elements
+
+Given a non-empty integer array of size n, find the minimum number of moves 
+required to make all array elements equal, where a move is incrementing n - 1 elements by 1
+
+Input:
+[1,2,3]
+
+Output:
+3
+
+Explanation:
+Only three moves are needed (remember each move increments two elements):
+
+[1,2,3]  =>  [2,3,3]  =>  [3,4,3]  =>  [4,4,4]
+
+class Solution {
+public:
+    int minMoves(vector<int>& nums) {
+        int result = 0;
+        sort(nums.begin(),nums.end());
+        for(int i=1;i<nums.size();i++)
+        {
+            result = result + (nums[i] - nums[0]);
+        }
+        return result;
+    }
+};
+/* Let's take an example [8,4,13] sort it ->[4,8,13] now if you do manually u will have 13 steps until you get all 3 
+numbers equal which will be [17,17,17]. Now when you check the array 13-4 + 13-8 will give us 13. You can try it for other 
+solutions too */
