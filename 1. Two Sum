@@ -1,0 +1,36 @@
+1. Two Sum
+
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int>result;
+        for(int i=0;i<nums.size()-1;i++)
+        {
+            for(int j=i+1;j<nums.size();j++)
+            {
+                if(nums[i] + nums[j] == target)
+                {
+                    result.push_back(i);
+                    result.push_back(j);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+};
+
+
+/* things learnt
+** My solution is O(n2) worst case
+** It can be solved in O(n) using maps, easy solution is store target - number when u are looping and check if the number is already present
+, if it is then it the answer, for example nums =[1,2,5,7] and target is 9, store 9 - nums[i] in map and before doing that
+check if nums[i] exists as u loop through first entry will be (8,0) then (7,1) then (4,2) and next nums[i] is 7 which is already present
+and that would be the answer.
+*/
