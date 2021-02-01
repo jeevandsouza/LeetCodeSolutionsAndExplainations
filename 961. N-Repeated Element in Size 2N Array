@@ -1,0 +1,22 @@
+961. N-Repeated Element in Size 2N Array
+
+In a array A of size 2N, there are N+1 unique elements, and exactly one of these elements is repeated N times.
+
+Input: [1,2,3,3]
+Output: 3
+class Solution {
+public:
+    int repeatedNTimes(vector<int>& A) {
+        for(int i=0;i<A.size();i++)
+        {
+            if((A.size()/2) == count(A.begin(),A.end(),A[i]))
+                return A[i];
+        }
+        return -1;
+    }
+};
+
+
+/* things learnt
+** Using count effectively and solution is O(n) worst case, cppreference says count works at constant time complexity
+*/
