@@ -1,0 +1,26 @@
+709. To Lower Case
+
+Implement function ToLowerCase() that has a string parameter str, and returns the same string in lowercase.
+
+Input: "Hello"
+Output: "hello"
+
+
+class Solution {
+public:
+    string toLowerCase(string str) {
+        string lowerCase = "";
+        for(int i=0;i<str.length();i++)
+        {
+           if(str[i]>=65 && str[i]<=90)
+               lowerCase+=(str[i]+32);
+            else
+                lowerCase+=str[i];
+        }
+        return lowerCase;
+    }
+};
+
+/*Things learnt
+** A-Z  65 to 90 and a-z 97 to 122
+*/
