@@ -1,0 +1,36 @@
+1716. Calculate Money in Leetcode Bank
+
+Hercy wants to save money for his first car. He puts money in the Leetcode bank every day.
+
+He starts by putting in $1 on Monday, the first day. Every day from Tuesday to Sunday, he will put in $1 more than the day before. On every subsequent Monday, he will put in $1 more than the previous Monday.
+Given n, return the total amount of money he will have in the Leetcode bank at the end of the nth day.
+
+Input: n = 10
+Output: 37
+Explanation: After the 10th day, the total is (1 + 2 + 3 + 4 + 5 + 6 + 7) + (2 + 3 + 4) = 37. Notice that on the 2nd Monday, Hercy only puts in $2.
+
+class Solution {
+public:
+    int totalMoney(int n) {
+        int sum=0,interim=1,Monday=1,increment=0;
+        while((increment++) !=n)
+        {
+            if(increment%7==1)
+            {
+                sum+=Monday;
+                interim= Monday;
+                Monday++;
+            }
+            else
+                sum = sum+(++interim);
+            }
+        return sum;
+    }
+};
+
+/*Things learnt
+** This is solved in O(n), it says 100% better than other cpp solutions interms of time constraint
+** but when we are solving math problem it is better to try to get a formula which would solve it in O(1)
+** one approach that i got while googling this stuff can be seen in discusssion.
+
+*/
