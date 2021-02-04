@@ -1,0 +1,78 @@
+41. First Missing Positive
+
+Share
+Given an unsorted integer array nums, find the smallest missing positive integer.
+
+Input: nums = [1,2,0]
+Output: 3
+
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        long long result = 0,flag = 0,flagOf1=0;
+        vector<int>::iterator ip; 
+        if(nums.empty())
+            return 1;
+        sort(nums.begin(),nums.end());
+       ip = unique(nums.begin(),nums.end());
+        nums.resize(distance(nums.begin(), ip)); 
+        if(nums[nums.size()-1] <= 0 )
+            return 1;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i] < 0)
+               continue;
+            
+            else if(nums[i]==0)
+                result++;
+            else if(nums[i]==1)
+            {
+                flag = 1;
+                result = 2;
+            }
+            else if (nums[i] > 1 && flag ==0)
+                return 1;
+            
+           else if(result != nums[i])
+               return result;
+            else
+                result++;
+            
+            
+        }
+        return result;
+    }
+};
+
+/*Things learnt
+**My solution beats 70% of other solutions both in time and space, took more time to come up with a solution than expected.
+** Learnt how to remove duplicates using unique function and then to use iterator and resize the vector.
+** Found the below solution interesting, the answer should be 1 or greater than that so while looping find if i+1 exists if it 
+does not  then send i+1 as answer.
+
+*/
+
+
+
+
+
+
+int firstMissingPositive(vector<int>& nums) 
+{
+    if(nums.size() == 0)
+        return 1;
+    if(nums.size() == 1)
+    {
+        if(nums[0] == 1)
+            return 2;
+        else 
+            return 1;
+    }
+    int i;
+    for( i = 0; i < nums.size(); i++)
+    {
+       if(find(i + 1, nums) == 0 && (i + 1) != 0)
+           return i + 1;
+    }
+   return nums.size() + 1; 
+}
