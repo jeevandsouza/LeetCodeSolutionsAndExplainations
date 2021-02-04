@@ -1,0 +1,79 @@
+2. Add Two Numbers
+
+Input: l1 = [2,4,3], l2 = [5,6,4]
+Output: [7,0,8]
+Explanation: 342 + 465 = 807.
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *current, *resultNode= NULL,*tailNode = NULL;
+        vector<int>vec;
+        string firstSum = "",secondSum = "";
+        long long sum=0;
+        current = l1;
+        while(current != NULL)
+        {
+            vec.push_back(current->val);
+            current = current->next;
+        }
+         reverse(vec.begin(), vec.end()); 
+         for(int i=0;i<vec.size();i++)
+            firstSum = firstSum + to_string(vec[i]);
+       current = l2;
+        vec.clear();
+        while(current != NULL)
+        {
+            vec.push_back(current->val);
+             current = current->next;
+        }
+        reverse(vec.begin(),vec.end());
+        for(int i=0;i<vec.size();i++)
+            secondSum += to_string(vec[i]);
+        vec.clear();
+        sum = std::strtoll(firstSum.c_str(),0,10) + std::strtoll(secondSum.c_str(),0,10);;
+        if(sum == 0)
+        {
+            ListNode* node = new ListNode;
+            node->val = 0;
+            node ->next = NULL;
+            resultNode = node;
+          }
+        while(sum != 0)
+        {
+            ListNode* node = new ListNode;
+            node->val = sum % 10;
+            node->next = NULL;
+            if(resultNode == NULL)
+            {
+                resultNode = node;
+                tailNode  = node;
+            }
+            else
+            {
+                tailNode->next = node;
+                tailNode = node;
+            }
+            sum /=10;
+        }
+       
+        return resultNode;
+        
+    }
+};
+
+/*Things learnt
+**My approach is put the values in a vector reverse it change it into string so that the values combine and then add them
+use reversing technique in a while loop and add them to linked list.
+**stoi function only works for int if long or long long is present we have to use std::strtol and std::strtoll respectively,
+they need to have const char instead of string as input so we need to convert to char using c_str() and put 0,10 as end position and base respectively.
+we can use reverse for integer in vector also recalled number reverse technique.
+*/
