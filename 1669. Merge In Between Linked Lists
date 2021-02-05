@@ -1,0 +1,69 @@
+1669. Merge In Between Linked Lists
+
+You are given two linked lists: list1 and list2 of sizes n and m respectively.
+
+Remove list1's nodes from the ath node to the bth node, and put list2 in their place.
+
+The blue edges and nodes in the following figure incidate the result:
+
+Input:
+[0,3,2,1,4,5]
+3
+4
+[1000000,1000001,1000002]
+Output:
+[0,1000000,1000001,1000002,5]
+Expected:
+[0,3,2,1000000,1000001,1000002,5]
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
+        ListNode* result = list1,*nex;
+        int count =0;
+        while(result != NULL)
+        {
+                if(count == a-1)
+                    break;
+        
+            count++;
+            result = result->next;
+        }
+        nex = result->next;
+        result->next = list2;
+        
+        while(result->next != NULL)
+            result = result->next;
+        
+        while(nex != NULL)
+        {
+            if(count == b)
+                break;
+            nex = nex->next;
+            count++;
+        }
+       result->next = nex;
+        return list1;
+        
+        
+        
+        
+    }
+};
+
+/*Things learnt
+**Took an hour to solve, need to speed up, medium level questions should be solved with half an hour max.
+
+*/
+
