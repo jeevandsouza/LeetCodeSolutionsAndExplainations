@@ -1,0 +1,37 @@
+1550. Three Consecutive Odds
+
+You are given two linked lists: list1 and list2 of sizes n and m respectively.
+
+Remove list1's nodes from the ath node to the bth node, and put list2 in their place.
+
+The blue edges and nodes in the following figure incidate the result:
+Given an integer array arr, return true if there are three consecutive odd numbers in the array. Otherwise, return false.
+
+Input: arr = [2,6,4,1]
+Output: false
+Explanation: There are no three consecutive odds.
+
+class Solution {
+public:
+    bool threeConsecutiveOdds(vector<int>& arr) {
+        int r=0,l=0;
+        for(int i=0;i<arr.size();i++)
+        {
+            if(arr[i] % 2 == 1)
+                l++;
+            else
+                r=l;
+            if(l-r ==3)
+                return true;
+        }
+        if(l-r == 3)
+            return true;
+        return false;
+    }
+};
+
+/*Things learnt
+** more concise solution would be loop through i =1 to n-1 and check if i-1 i and i+1 are odd.
+
+*/
+
