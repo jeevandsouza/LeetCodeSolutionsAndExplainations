@@ -1,0 +1,52 @@
+1689. Partitioning Into Minimum Number Of Deci-Binary Numbers
+
+A decimal number is called deci-binary if each of its digits is either 0 or 1 without any leading zeros. For example, 101 and 1100 are deci-binary, while 112 and 3001 are not.
+
+Given a string n that represents a positive decimal integer, return the minimum number of positive deci-binary numbers needed so that they sum up to n.
+
+Input: n = "32"
+Output: 3
+Explanation: 10 + 11 + 11 = 32
+
+
+class Solution {
+public:
+    int minPartitions(string n) {
+        int result = 0;
+        for(int i=0;i<n.length();i++)
+            result = max(result,n[i]-'0');
+        return result;
+    }
+};
+
+/*Things learnt
+**Let's start with a simple example of str = "9", now the constraint would be you can use only a single digit number to 
+get the sum 9, only deci digits are 0 and 1 so we would be adding 1 a total of 9 times to get the answer 1+1+1+1 --- +1 = 9 
+and the max integer in str = "9" also happens to be 9 and thus the answer.
+Similarly let's take 32 as another example, the digits that can be used are 1,10 and 11 only, we get it by adding 11+11+10 so 
+a total of 3 digits which is also the max digit in 32.
+
+*/
+
+
+
+
+
+class Solution {
+public:
+    int isPrefixOfWord(string sentence, string searchWord) {
+        string s, tmp; 
+        stringstream ss(sentence);
+        vector<string> words;
+       
+        while(getline(ss, tmp, ' '))
+             words.push_back(tmp);
+        for(int i=0;i<words.size();i++)
+        {
+           // if(words[i].find(searchWord) != string::npos)
+            if(words[i].compare(0, searchWord.size(), searchWord) == 0)
+                return (i + 1);
+        }
+            return -1;
+    }
+};
