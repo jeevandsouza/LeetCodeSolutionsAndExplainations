@@ -1,0 +1,50 @@
+234. Palindrome Linked List
+
+Given a singly linked list, determine if it is a palindrome.
+
+Input: 1->2
+Output: false
+
+It's guaranteed that a unique mapping will always exist.
+
+Input: s = "10#11#12"
+Output: "jkab"
+Explanation: "j" -> "10#" , "k" -> "11#" , "a" -> "1" , "b" -> "2".
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        vector<int>store;
+        int j;
+        while(head != NULL)
+        {
+            store.push_back(head->val);
+            head = head->next;
+        }
+         j = store.size()-1; 
+        for(int i=0;i<(store.size()/2);i++)
+        {
+            if(store[i] != store[j])
+                return false;
+            j--;
+        }
+        return true;
+    }
+};
+
+/* Things learnt
+ ** The follow up question was can u do it in O(n) time and O(1) space, my above solution is O(n) for both time and space, O(n) to 
+  push the elements and O(n/2) worst case for comparision O(n) + O(n/2) = O(n).
+  ** For O(1) space we can reverse first half of linked list and then compare it with second half which is easy.
+*/
